@@ -19,6 +19,7 @@ from db.records import Records
 # load_dotenv()
 
 app = Flask(__name__)
+app.config['PREFERRED_URL_SCHEME'] = 'https'
 app.secret_key = os.getenv('GOOGLE_SECRET_KEY')
 
 google_client_id = os.getenv('GOOGLE_CLIENT_ID')
