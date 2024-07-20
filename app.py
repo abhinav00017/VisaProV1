@@ -51,9 +51,11 @@ records = Records()
 BackendOpenAI = BackendOpenAI(os.getenv('OPENAI_API_KEY'))
 threads = []
 
+
 @app.route("/login")
 def login():
     return google.authorize(callback=url_for('authorized', _external=True))
+
 
 @app.route('/login/authorized')
 def authorized():
@@ -65,7 +67,7 @@ def authorized():
     session['google_token'] = (response['access_token'], '')
     me = google.get('userinfo')
     print(me.data, me)
-    
+
     session["google_id"] = me.data.get("id")
     email = me.data.get("email")
     session["email"] = email
@@ -73,9 +75,11 @@ def authorized():
 
     return redirect(url_for('home_screen'))
 
+
 @google.tokengetter
 def get_google_oauth_token():
     return session.get('google_token')
+
 
 @app.route("/logout")
 def logout():
@@ -92,13 +96,14 @@ def login_is_required(function):
     @wraps(function)
     def wrapper(*args, **kwargs):
         if "google_id" not in session:
-            kwargs['status']="loggedout"  # Authorization required
+            kwargs['status'] = "loggedout"  # Authorization required
             return function(*args, **kwargs)
         else:
             email = session["email"]
             print(session)
             return function(*args, **kwargs)
     return wrapper
+
 
 def login_to_home(function):
     def wrapper1(*args, **kwargs):
@@ -108,6 +113,7 @@ def login_to_home(function):
         else:
             return redirect("/protected_area")
     return wrapper1
+
 
 @app.route('/')
 @login_is_required
@@ -120,6 +126,7 @@ def hello(status=None):
         return redirect("/add_new_user_data")
     return redirect('/home_screen')
 
+
 @app.route("/login_landing")
 @login_is_required
 def login_landing(status=None):
@@ -131,6 +138,7 @@ def login_landing(status=None):
         return redirect("/add_new_user_data")
     return redirect('/home_screen')
 
+
 @app.route("/home_screen")
 @login_is_required
 def home_screen(status=None):
@@ -141,6 +149,7 @@ def home_screen(status=None):
     if data == None:
         return redirect("/add_new_user_data")
     return render_template('/frontend/Home_screen.html', name=session["name"])
+
 
 @app.route("/save_user_data", methods=['POST'])
 @login_is_required
@@ -162,6 +171,7 @@ def add_new_user_data(status=None):
         return redirect("/login_landing")
     return render_template('/frontend/Add_new_user_data.html')
 
+
 @app.route("/threads")
 @login_is_required
 def thread(status=None):
@@ -178,7 +188,7 @@ def thread(status=None):
     return json.dumps({
         "threads_list": data["threads"]
     })
-    
+
 
 @app.route('/add_thread', methods=['GET', 'POST'])
 @login_is_required
@@ -350,4 +360,4 @@ def update_profile(status=None):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=8080, debug=False)
+    app.run(port=8080, debug=False)
