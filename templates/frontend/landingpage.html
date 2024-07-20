@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='landingpage.css') }}"  type="text/css">
+</head>
+
+<body>
+    <div class="mainscreeen" id="mainscreen">
+        <div class="header" id="header">
+            <div class="title" id="title">
+                <h2>VisaPro</h2>
+            </div>
+            <div class="menu" id="menu">
+                <button>
+                    <p>Contact</p>
+                </button>
+                <button>
+                    <p>Pricing</p>
+                </button>
+                <button>
+                    <p>Product</p>
+                </button>
+                <button>
+                    <p>Use Case</p>
+                </button>
+            </div>
+            <div class="auth" id="auth">
+                <button id="login">Login</button>
+                <button id="signup">Sign Up</button>
+            </div>
+        </div>
+        <div class="LZS-1" id="LZS-1">
+            <div class="display-1" id="display-1">
+                Your Ticket to smooth Visa Approval with VisaPro
+            </div>
+            <div class="display-2" id="display-2">
+                Increase your chances of Visa Approval with VisaPro
+            </div>
+            <div class="display-3" id="display-3">
+                <button id="getstarted">
+                    Get Started
+                </button>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='landingpage.js') }}"></script>
+</body>
+
+</html>

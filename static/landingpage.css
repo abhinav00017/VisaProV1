@@ -1,0 +1,122 @@
+.header {
+    background-color: #FFFFFF;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid #D7D7D7;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0px;
+    z-index: 2;
+}
+
+.header .title h2 {
+    padding-left: 30%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #F65434;
+    font-family: 'Inter', sans-serif;
+}
+
+.header .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .menu button {
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+    font-family: 'Inter', sans-serif;
+    padding: 0px 0px;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+.header .menu button:hover {
+    background-color: #E0E0E0; 
+}
+
+.header .menu p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+    font-family: 'Inter', sans-serif;
+    padding: 0px 20px;
+}
+
+.header .auth {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.header .auth button {
+    background-color: #F65434;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-right: 5px;
+}
+
+.LZS-1 {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15%;
+    flex-direction: column;
+}
+
+.LZS-1 .display-1 {
+    font-size: 40px;
+    font-weight: bold;
+    width: 50%;
+    text-align: center;
+    color: #212121;
+    font-family: 'Inter', sans-serif;
+}
+
+.LZS-1 .display-2 {
+    font-size: 20px;
+    font-weight: 500;
+    width: 50%;
+    text-align: center;
+    color: #212121;
+    font-family: 'Inter', sans-serif;
+    margin-top: 20px;
+}
+
+.LZS-1 .display-3 {
+    font-size: 16px;
+    font-weight: 500;
+    width: 50%;
+    text-align: center;
+    color: #212121;
+    font-family: 'Inter', sans-serif;
+    margin-top: 20px;
+}
+
+.LZS-1 .display-3 button {
+    background-color: #F65434;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    border-radius: 10px;
+    padding: 10px 20px;
+    height: 40px;
+
+}

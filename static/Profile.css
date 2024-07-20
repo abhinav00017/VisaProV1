@@ -1,0 +1,250 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+header{
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid #D7D7D7;
+}
+
+#retn_home_btn{
+    height: 32px;
+    width: 32px;
+    border: none;
+    border-radius: 8px;
+    outline: 1px solid #F5F5F5;
+    margin: 20px auto 20px 40px;
+    padding: 6px;
+    background-color: #FFFFFF;
+}
+
+#retn_home_btn:hover{
+    background-color: #F8F8F8;
+}
+
+
+header > h2{
+    font-size: 20px;
+    font-weight: 500;
+    color: #F65434;
+    font-family: 'Inter', sans-serif;
+    margin-left: 6%;
+}
+.credit_profile_btn{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.credits_btn{
+    height: 38px;
+    width: 141px;
+    border: 0.5px solid #FF7C34;
+    border-radius: 8px;
+    color: #FD6524;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(255, 124, 52, 0.1); 
+    margin-top: 17px;
+    padding: 11.5px 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.credits_btn > svg{
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+}
+
+.profile{
+    height: 38px;
+    width: 38px;
+    border: none;
+    border-radius: 19.8px;
+    background: linear-gradient(to bottom, #ABF9FF, #FF8F8D);
+    margin: 17px 34px 12px 10px;
+}
+
+.profile_menu{
+    height: 192px;
+    width: 142px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    outline: 1px solid #A5A5A5;
+    border-radius: 6px;
+    position: fixed;
+    top: 66px;
+    right: 30px;
+    background-color: #FFFFFF;
+    display: none;
+}
+
+
+.profile_menu > button{
+    height: 32px;
+    width: 130px;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 4px;
+    background-color: #FFFFFF;
+    color: #212121;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2px auto 2px auto;
+}
+
+
+.profile_menu > button > svg{
+    height: 16px;
+    width: 16px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.profile_menu > button:hover{
+    background-color: #F8F8F8;
+}
+
+
+
+.main_header{
+    height: 33px;
+    width: 960px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 36px 240px auto 240px;
+    position: relative;
+}
+
+.main_header > h2{
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+#edit_btn{
+    height: 33px;
+    width: 64px;
+    border: none;
+    border-radius: 7px;
+    padding: 5.5px 19px;
+    background-color: #F9F9F9;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#edit_btn:hover{
+    background-color: #E4E4E4;
+}
+
+.c_d_btn{
+    display: flex;
+}
+
+#Cancel_btn , #Done_btn{
+    height: 33px;
+    width: 64px;
+    border: none;
+    border-radius: 7px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+#Cancel_btn{
+    color: #212121;
+    background-color: #F9F9F9;
+}
+#Done_btn{
+    color: #FFFFFF;
+    background-color: #F65434;
+    margin-left: 6px;
+}
+
+
+.c_d_btn > button:hover{
+    background-color: #E4E4E4;
+}
+
+
+.profile_dtls{
+    height: 270px;
+    width: 960px;
+    border: none;
+    margin: 33px 240px auto 240px;
+    display: grid;
+    grid-template-columns: 470px 470px;
+    column-gap: 20px;
+    row-gap: 24px;
+}
+
+.profile_dtls > div > label{
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #212121;
+}
+
+.profile_dtls > div  > input{
+    height: 38px;
+    width: 470px;
+    border: none;
+    border-radius: 10px;
+    outline: 0.3px solid #B9B9B9;
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color:#0b0b0b;
+    background-color: #FFFFFF;
+}
+
+.profile_dtls > div  > select{
+    height: 38px;
+    width: 470px;
+    border: none;
+    border-radius: 10px;
+    outline: 0.3px solid #B9B9B9;
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color:#0b0b0b;
+    background-color: #FFFFFF;
+}
+
+
+#Sign_out_btn{
+    height: 40px;
+    width: 89px;
+    border: none;
+    border-radius: 8px;
+    outline: 1px solid #FFBABA;
+    background-color: #FFEDED;
+    color: #F65434;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    position: absolute;
+    bottom: 28px;
+    left: 240px;
+}
+

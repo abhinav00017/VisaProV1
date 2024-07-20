@@ -1,0 +1,10 @@
+flask
+FLASK==2.2.4
+Werkzeug==2.2.2
+flask-session
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+requests
+pymongo
+flask_oauthlib

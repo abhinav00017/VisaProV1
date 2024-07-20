@@ -1,0 +1,9 @@
+venv
+myenv
+utils/__pycache__ 
+.env 
+db/__pycache__ 
+templates/frontend/venv
+flask_session 
+__pycache__ 
+.vercel
