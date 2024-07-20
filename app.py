@@ -19,7 +19,6 @@ from db.records import Records
 # load_dotenv()
 
 app = Flask(__name__)
-app.config['PREFERRED_URL_SCHEME'] = 'https'
 app.secret_key = os.getenv('GOOGLE_SECRET_KEY')
 
 google_client_id = os.getenv('GOOGLE_CLIENT_ID')
@@ -54,7 +53,7 @@ threads = []
 
 @app.route("/login")
 def login():
-    return google.authorize(callback=url_for('authorized', _external=True))
+    return google.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
 
 @app.route('/login/authorized')
 def authorized():
