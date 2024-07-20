@@ -1,67 +1,42 @@
 import json
 import pymongo
+import logging
 from pymongo import MongoClient
 
 class Records:
     def __init__(self):
         self.uri = "mongodb+srv://VisaPro:1OXwJt73cMNtp42s@cluster0.ucnfb3p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
         self.client = MongoClient(self.uri)
-        print("Connected to the database")
+        self.database = self.client["abhinav"]
+        self.collection = self.database["VisaPro"]
+        logging.info("Connected to the database")
     
-    
-        
     def create_record(self, record):
-        try:            
-            database = self.client["abhinav"]
-            collection = database["VisaPro"]
-            
-            result = collection.insert_one(record)
-            print(result.acknowledged)
-            self.client.close()
-            
+        try:
+            result = self.collection.insert_one(record)
+            logging.info(f"Insert acknowledged: {result.acknowledged}")
             return True
         except Exception as e:
-            return e
+            logging.error(e)
+            return False
 
-    
     def retrieve_record(self, email_id):
-        client_main = MongoClient(self.uri)
-        database = client_main["abhinav"]
-        collection = database["VisaPro"]
-        result = collection.find_one({'email':email_id})
-        return result
-            
+        try:
+            result = self.collection.find_one({'email': email_id})
+            return result
+        except Exception as e:
+            logging.error(e)
+            return None
+
     def update_record(self, record):
         try:
-            
-            query_filter = {'email' : record['email']}
-            if record.get('phonenumber'):
-                update_operation = { '$set' : 
-                    { 
-                        'country' : record['country'],
-                        'user_name' : record['user_name'],
-                        'threads' : record['threads'],
-                        'phonenumber' : record['phonenumber']
-                    }
-                }
-            else:
-                update_operation = { '$set' : 
-                    { 
-                        'country' : record['country'],
-                        'user_name' : record['user_name'],
-                        'threads' : record['threads']
-                    }
-                }
-                
-            client_main = MongoClient(self.uri)
-            database = client_main["abhinav"]
-            collection = database["VisaPro"]
-            result = collection.update_many(query_filter, update_operation)
+            query_filter = {'email': record['email']}
+            update_operation = {'$set': {key: value for key, value in record.items() if key != 'email'}}
+            result = self.collection.update_many(query_filter, update_operation)
             return "Updated The Record"
-
         except Exception as e:
-            return e
-
+            logging.error(e)
+            return None
     
     
 # rec = Records()
