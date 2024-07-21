@@ -65,10 +65,14 @@ def login():
 
 @app.route('/callback')
 def callback():
+    if 'state' not in session or 'state' not in request.args:
+        return 'State parameter missing', 400
+
+    if session.get('state') != request.args['state']:
+        return 'State does not match!', 400
+
     flow.fetch_token(authorization_response=request.url)
 
-    if not session.get('state') == request.args['state']:
-        return 'State does not match!', 400
 
     credentials = flow.credentials
     service = build('oauth2', 'v2', credentials=credentials)
