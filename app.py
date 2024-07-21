@@ -26,10 +26,15 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+)
+
 records = Records()
 
 BackendOpenAI = BackendOpenAI(os.getenv('OPENAI_API_KEY'))
-threads = []
 
 flow = Flow.from_client_config(
     client_config={
@@ -78,6 +83,7 @@ def callback():
     session["name"] = name
     session["picture"] = picture
     session["google_id"] = google_id
+    session["threads"] = [] 
 
     print("Email: ", email)
     print("Name: ", name)
@@ -285,6 +291,7 @@ def chat(status=None):
     print(response_data_3)
     response_data_4 = BackendOpenAI.get_thread_response(thread_id)
     response_answer = response_data_4['data'][0]['content'][0]['text']['value']
+    threads = session.get('threads', [])
     for i in threads:
         if i['id'] == thread_id:
             i['messages'].append({'sender': 'user', 'content': message})
@@ -310,14 +317,15 @@ def load_chat(thread_id):
         'title': thread_id,
         'messages': messages
     }
-    threads.append(history)
-    print(threads)
-    return jsonify(threads)
+    
+    session["threads"].append(history)
+    print(session["threads"])
+    return jsonify(session["threads"])
 
 
 @app.route('/threads/<string:thread_id>', methods=['GET'])
 def get_data(thread_id):
-    global threads
+    threads = session.get('threads', [])
     thread = None
     print("one ", threads)
     print(thread_id)
