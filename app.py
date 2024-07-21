@@ -1,16 +1,13 @@
 import os
 import pathlib
 from flask import Flask, request, session, abort, redirect, render_template, jsonify, url_for
-from flask_oauthlib.client import OAuth
 from flask_session import Session
 from functools import wraps
 import requests
 import json
 
-from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
-from pip._vendor import cachecontrol
-import google.auth.transport.requests
+from googleapiclient.discovery import build
 
 from utils.backendopenai import BackendOpenAI
 from db.records import Records
@@ -25,57 +22,70 @@ google_client_id = os.getenv('GOOGLE_CLIENT_ID')
 google_client_secret = os.getenv('GOOGLE_SECRET_KEY')
 google_redirect_uri = os.getenv('GOOGLE_REDIRECT_URI')
 
-oauth = OAuth(app)
-
-google = oauth.remote_app(
-    'google',
-    consumer_key=google_client_id,
-    consumer_secret=google_client_secret,
-    request_token_params={
-        'scope': 'email',
-    },
-    base_url='https://www.googleapis.com/oauth2/v1/',
-    request_token_url=None,
-    access_token_method='POST',
-    access_token_url='https://accounts.google.com/o/oauth2/token',
-    authorize_url='https://accounts.google.com/o/oauth2/auth',
-)
-
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-
 
 records = Records()
 
 BackendOpenAI = BackendOpenAI(os.getenv('OPENAI_API_KEY'))
 threads = []
 
+flow = Flow.from_client_config(
+    client_config={
+        "web": {
+            "client_id": google_client_id,
+            "project_id": "your-project-id",  # Optional, for your reference
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_secret": google_client_secret,
+            "redirect_uris": [google_redirect_uri],
+            "javascript_origins": ["https://visaprov1-app-twl2y.ondigitalocean.app"]
+        }
+    },
+    scopes=["https://www.googleapis.com/auth/userinfo.email",
+            "openid", "https://www.googleapis.com/auth/userinfo.profile"],
+    redirect_uri=google_redirect_uri
+)
+
+
 @app.route("/login")
 def login():
-    return google.authorize(callback=google_redirect_uri)
+    auth_uri, state = flow.authorization_url(
+        prompt='consent', access_type='offline')
+    session['state'] = state
+    return redirect(auth_uri)
 
-@app.route('/login/authorized')
-def authorized():
-    response = google.authorized_response()
-    print(response)
-    if response is None or response.get('access_token') is None:
-        return 'Login failed.'
 
-    session['google_token'] = (response['access_token'], '')
-    me = google.get('userinfo')
-    print(me.data, me)
-    
-    session["google_id"] = me.data.get("id")
-    email = me.data.get("email")
+@app.route('/callback')
+def callback():
+    flow.fetch_token(authorization_response=request.url)
+
+    if not session.get('state') == request.args['state']:
+        return 'State does not match!', 400
+
+    credentials = flow.credentials
+    service = build('oauth2', 'v2', credentials=credentials)
+    user_info = service.userinfo().get().execute()
+
+    email = user_info.get('email')
+    name = user_info.get('name')
+    picture = user_info.get('picture')
+    google_id = user_info.get('id')
+
     session["email"] = email
-    session["name"] = email.split('@')[0]
+    session["name"] = name
+    session["picture"] = picture
+    session["google_id"] = google_id
+
+    print("Email: ", email)
+    print("Name: ", name)
+    print("Picture: ", picture)
+    print("Google ID: ", google_id)
 
     return redirect(url_for('home_screen'))
 
-@google.tokengetter
-def get_google_oauth_token():
-    return session.get('google_token')
 
 @app.route("/logout")
 def logout():
@@ -92,13 +102,14 @@ def login_is_required(function):
     @wraps(function)
     def wrapper(*args, **kwargs):
         if "google_id" not in session:
-            kwargs['status']="loggedout"  # Authorization required
+            kwargs['status'] = "loggedout"  # Authorization required
             return function(*args, **kwargs)
         else:
             email = session["email"]
             print(session)
             return function(*args, **kwargs)
     return wrapper
+
 
 def login_to_home(function):
     def wrapper1(*args, **kwargs):
@@ -108,6 +119,7 @@ def login_to_home(function):
         else:
             return redirect("/protected_area")
     return wrapper1
+
 
 @app.route('/')
 @login_is_required
@@ -120,6 +132,7 @@ def hello(status=None):
         return redirect("/add_new_user_data")
     return redirect('/home_screen')
 
+
 @app.route("/login_landing")
 @login_is_required
 def login_landing(status=None):
@@ -131,6 +144,7 @@ def login_landing(status=None):
         return redirect("/add_new_user_data")
     return redirect('/home_screen')
 
+
 @app.route("/home_screen")
 @login_is_required
 def home_screen(status=None):
@@ -141,6 +155,7 @@ def home_screen(status=None):
     if data == None:
         return redirect("/add_new_user_data")
     return render_template('/frontend/Home_screen.html', name=session["name"])
+
 
 @app.route("/save_user_data", methods=['POST'])
 @login_is_required
@@ -162,6 +177,7 @@ def add_new_user_data(status=None):
         return redirect("/login_landing")
     return render_template('/frontend/Add_new_user_data.html')
 
+
 @app.route("/threads")
 @login_is_required
 def thread(status=None):
@@ -178,7 +194,7 @@ def thread(status=None):
     return json.dumps({
         "threads_list": data["threads"]
     })
-    
+
 
 @app.route('/add_thread', methods=['GET', 'POST'])
 @login_is_required

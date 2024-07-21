@@ -5,6 +5,9 @@ flask-session
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
+google-api-python-client
+google-oauth2-tool 
 requests
 pymongo
 flask_oauthlib
+
