@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
     const sidebar = document.getElementById('sidebar');
     const threads = document.getElementById('Recent_btns');
     const HS1 = document.getElementById('HS1');
@@ -403,4 +403,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const Search_btn = document.getElementById('searchButton');
     const parentmain = document.getElementById('main_screen');
     console.log(Search_btn, parentmain);   
-});
+};

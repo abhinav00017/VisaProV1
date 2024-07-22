@@ -16,7 +16,7 @@ from db.records import Records
 # load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('GOOGLE_SECRET_KEY')
+app.secret_key = os.urandom(24)
 
 google_client_id = os.getenv('GOOGLE_CLIENT_ID')
 google_client_secret = os.getenv('GOOGLE_SECRET_KEY')
@@ -191,6 +191,7 @@ def add_new_user_data(status=None):
 @app.route("/threads")
 @login_is_required
 def thread(status=None):
+    print(session)
     if status == "loggedout":
         return redirect("/login_landing")
     email = session["email"]
