@@ -3,6 +3,7 @@ import pathlib
 from flask import Flask, request, session, abort, redirect, render_template, jsonify, url_for
 from flask_session import Session
 from functools import wraps
+from datetime import timedelta
 import requests
 import json
 
@@ -22,8 +23,9 @@ google_client_id = os.getenv('GOOGLE_CLIENT_ID')
 google_client_secret = os.getenv('GOOGLE_SECRET_KEY')
 google_redirect_uri = os.getenv('GOOGLE_REDIRECT_URI')
 
-app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=7)
 Session(app)
 
 app.config.update(
@@ -57,8 +59,7 @@ flow = Flow.from_client_config(
 
 @app.route("/login")
 def login():
-    auth_uri, state = flow.authorization_url(
-        prompt='consent', access_type='offline')
+    auth_uri, state = flow.authorization_url(access_type='offline')
     session['state'] = state
     return redirect(auth_uri)
 
