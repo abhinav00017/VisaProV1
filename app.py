@@ -7,8 +7,11 @@ from datetime import timedelta
 import requests
 import json
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 from google_auth_oauthlib.flow import Flow
 from googleapiclient.discovery import build
+from google.auth.exceptions import GoogleAuthError
 
 from utils.backendopenai import BackendOpenAI
 from db.records import Records
@@ -18,6 +21,8 @@ from db.records import Records
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1, x_prefix=1)
 
 google_client_id = os.getenv('GOOGLE_CLIENT_ID')
 google_client_secret = os.getenv('GOOGLE_SECRET_KEY')
@@ -63,39 +68,32 @@ def login():
     session['state'] = state
     return redirect(auth_uri)
 
-
 @app.route('/callback')
 def callback():
-    if 'state' not in session or 'state' not in request.args:
-        return 'State parameter missing', 400
+    try:
+        if 'state' not in session or 'state' not in request.args:
+            return 'State parameter missing', 400
 
-    if session.get('state') != request.args['state']:
-        return 'State does not match!', 400
+        if session.get('state') != request.args['state']:
+            return 'State does not match!', 400
 
-    flow.fetch_token(authorization_response=request.url)
+        flow.fetch_token(authorization_response=request.url)
+        credentials = flow.credentials
+        service = build('oauth2', 'v2', credentials=credentials)
+        user_info = service.userinfo().get().execute()
 
+        session["email"] = user_info.get('email')
+        session["name"] = user_info.get('name')
+        session["picture"] = user_info.get('picture')
+        session["google_id"] = user_info.get('id')
+        session["threads"] = [] 
 
-    credentials = flow.credentials
-    service = build('oauth2', 'v2', credentials=credentials)
-    user_info = service.userinfo().get().execute()
+        return redirect(url_for('home_screen'))
+    except GoogleAuthError as e:
+        return f"An error occurred during the OAuth flow: {str(e)}", 500
+    except Exception as e:
+        return f"An unexpected error occurred: {str(e)}", 500
 
-    email = user_info.get('email')
-    name = user_info.get('name')
-    picture = user_info.get('picture')
-    google_id = user_info.get('id')
-
-    session["email"] = email
-    session["name"] = name
-    session["picture"] = picture
-    session["google_id"] = google_id
-    session["threads"] = [] 
-
-    print("Email: ", email)
-    print("Name: ", name)
-    print("Picture: ", picture)
-    print("Google ID: ", google_id)
-
-    return redirect(url_for('home_screen'))
 
 
 @app.route("/logout")
@@ -381,4 +379,4 @@ def update_profile(status=None):
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0', port=8080, debug=False)
-    app.run(port=8080,debug=True)
+    app.run(port=8080,debug=False)
