@@ -1,10 +1,8 @@
 import os
-import pathlib
-from flask import Flask, request, session, abort, redirect, render_template, jsonify, url_for
+from flask import Flask, request, session, redirect, render_template, jsonify, url_for
 from flask_session import Session
 from functools import wraps
 from datetime import timedelta
-import requests
 import json
 
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -47,13 +45,13 @@ flow = Flow.from_client_config(
     client_config={
         "web": {
             "client_id": google_client_id,
-            "project_id": "your-project-id",  # Optional, for your reference
+            "project_id": "your-project-id",  
             "auth_uri": "https://accounts.google.com/o/oauth2/auth",
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
             "client_secret": google_client_secret,
             "redirect_uris": [google_redirect_uri],
-            "javascript_origins": ["https://visaprov1-app-twl2y.ondigitalocean.app"]
+            "javascript_origins": ["https://visapro.azurewebsites.net"]
         }
     },
     scopes=["https://www.googleapis.com/auth/userinfo.email",
