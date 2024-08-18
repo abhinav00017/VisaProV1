@@ -12,19 +12,23 @@ from googleapiclient.discovery import build
 from google.auth.exceptions import GoogleAuthError
 
 from utils.backendopenai import BackendOpenAI
+
+from blueprints.authenticate import authenticate
+from blueprints.landing import landing
+from blueprints.visagpt import visagpt
+
 from db.records import Records
 
-# from dotenv import load_dotenv
-# load_dotenv()
+from decorators import login_is_required
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1, x_prefix=1)
 
-google_client_id = os.getenv('GOOGLE_CLIENT_ID')
-google_client_secret = os.getenv('GOOGLE_SECRET_KEY')
-google_redirect_uri = os.getenv('GOOGLE_REDIRECT_URI')
+app.register_blueprint(authenticate)
+app.register_blueprint(landing)
+app.register_blueprint(visagpt)
 
 app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
@@ -40,129 +44,6 @@ app.config.update(
 records = Records()
 
 BackendOpenAI = BackendOpenAI(os.getenv('OPENAI_API_KEY'))
-
-flow = Flow.from_client_config(
-    client_config={
-        "web": {
-            "client_id": google_client_id,
-            "project_id": "your-project-id",  
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-            "client_secret": google_client_secret,
-            "redirect_uris": [google_redirect_uri],
-            "javascript_origins": ["https://visapro.azurewebsites.net"]
-        }
-    },
-    scopes=["https://www.googleapis.com/auth/userinfo.email",
-            "openid", "https://www.googleapis.com/auth/userinfo.profile"],
-    redirect_uri=google_redirect_uri
-)
-
-
-@app.route("/login")
-def login():
-    auth_uri, state = flow.authorization_url(access_type='offline')
-    session['state'] = state
-    return redirect(auth_uri)
-
-@app.route('/callback')
-def callback():
-    try:
-        if 'state' not in session or 'state' not in request.args:
-            return 'State parameter missing', 400
-
-        if session.get('state') != request.args['state']:
-            return 'State does not match!', 400
-
-        flow.fetch_token(authorization_response=request.url)
-        credentials = flow.credentials
-        service = build('oauth2', 'v2', credentials=credentials)
-        user_info = service.userinfo().get().execute()
-
-        session["email"] = user_info.get('email')
-        session["name"] = user_info.get('name')
-        session["picture"] = user_info.get('picture')
-        session["google_id"] = user_info.get('id')
-        session["threads"] = [] 
-
-        return redirect(url_for('home_screen'))
-    except GoogleAuthError as e:
-        return f"An error occurred during the OAuth flow: {str(e)}", 500
-    except Exception as e:
-        return f"An unexpected error occurred: {str(e)}", 500
-
-
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect("/logout-successfull")
-
-
-@app.route("/logout-successfull")
-def logoutsuccessfull():
-    return "Loggedout Successsfully <a href='/'><button>home</button></a>"
-
-
-def login_is_required(function):
-    @wraps(function)
-    def wrapper(*args, **kwargs):
-        if "google_id" not in session:
-            kwargs['status'] = "loggedout"  # Authorization required
-            return function(*args, **kwargs)
-        else:
-            email = session["email"]
-            print(session)
-            return function(*args, **kwargs)
-    return wrapper
-
-
-def login_to_home(function):
-    def wrapper1(*args, **kwargs):
-        print(session['email'])
-        if "google_id" not in session:
-            return redirect("/")
-        else:
-            return redirect("/protected_area")
-    return wrapper1
-
-
-@app.route('/')
-@login_is_required
-def hello(status=None):
-    if status == "loggedout":
-        return render_template('/frontend/landingpage.html')
-    email = session["email"]
-    data = records.retrieve_record(email)
-    if data == None:
-        return redirect("/add_new_user_data")
-    return redirect('/home_screen')
-
-
-@app.route("/login_landing")
-@login_is_required
-def login_landing(status=None):
-    if status == "loggedout":
-        return render_template('/frontend/Login_landing.html')
-    email = session["email"]
-    data = records.retrieve_record(email)
-    if data == None:
-        return redirect("/add_new_user_data")
-    return redirect('/home_screen')
-
-
-@app.route("/home_screen")
-@login_is_required
-def home_screen(status=None):
-    if status == "loggedout":
-        return redirect("/login_landing")
-    email = session["email"]
-    data = records.retrieve_record(email)
-    if data == None:
-        return redirect("/add_new_user_data")
-    return render_template('/frontend/Home_screen.html', name=session["name"])
-
 
 @app.route("/save_user_data", methods=['POST'])
 @login_is_required

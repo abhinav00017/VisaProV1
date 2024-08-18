@@ -7,3 +7,4 @@ templates/frontend/venv
 flask_session 
 __pycache__ 
 .vercel
+client.json
