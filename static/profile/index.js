@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const return_home = document.getElementById('retn_home_btn');
 
     return_home.addEventListener('click',function(){
-        window.location.href = "home_screen";
+        window.location.href = "/visagpt/home";
     });
 
     const sign_out = document.getElementById('Sign_out_btn');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     done_btn.addEventListener('click',function(){
 
-        fetch('/update_profile', {
+        fetch('/profile/update', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

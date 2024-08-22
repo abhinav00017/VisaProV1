@@ -39,7 +39,7 @@ window.onload = () => {
         threads.appendChild(loadingdiv);   
         
 
-        fetch('/threads')
+        fetch('/visagpt/threads')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -109,7 +109,7 @@ window.onload = () => {
     function loadThread(threadId) {
         HS1.innerHTML = '';
         last_threadId = threadId;
-        fetch(`/threads/${threadId}`)
+        fetch(`/visagpt/threads/${threadId}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -207,7 +207,7 @@ window.onload = () => {
 
                         scrollToBottom();
                         addNewThread(newThread);
-                        fetch('/chat', {
+                        fetch('/visagpt/chat', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ message, threadId: last_threadId })
@@ -226,7 +226,7 @@ window.onload = () => {
                 }
                 else{
                     scrollToBottom();
-                    fetch('/chat', {
+                    fetch('/visagpt/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ message, threadId: last_threadId })
@@ -355,7 +355,7 @@ window.onload = () => {
 
     const profile_btn = document.getElementById('profile_btn');
     profile_btn.addEventListener('click',function(){
-        window.location.href = "/profile_page";
+        window.location.href = "/profile";
     })
 
 

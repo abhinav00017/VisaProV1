@@ -14,7 +14,7 @@ landing = Blueprint("landing", __name__)
 @login_is_required
 def home(status=None):
     if status == "loggedout":
-        return render_template('/frontend/landingpage.html')
+        return render_template('landing/index.html')
     data = records.retrieve_record(session["email"])
     if data == None:
         return redirect("/add_new_user_data")
@@ -24,7 +24,7 @@ def home(status=None):
 @login_is_required
 def login_landing(status=None):
     if status == "loggedout":
-        return render_template('/frontend/Login_landing.html')
+        return render_template('/authenticate/index.html')
     data = records.retrieve_record(session["email"])
     if data == None:
         return redirect("/add_new_user_data")

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',  () => {
             return;
         }
     
-        fetch('/add_user', {
+        fetch('/profile/newuser', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_name, country, threads: [] })
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',  () => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            window.location.href = '/home_screen'; 
+            window.location.href = '/visagpt/home'; 
         })
         .catch((error) => {
             console.error('Error:', error);
