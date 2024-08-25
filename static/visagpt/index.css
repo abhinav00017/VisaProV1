@@ -86,9 +86,24 @@ header > h2{
     height: 38px;
     width: 38px;
     border: none;
-    border-radius: 19.8px;
+    border-radius: 50%;
     background: linear-gradient(to bottom, #ABF9FF, #FF8F8D);
     margin: 17px 34px 12px 10px;
+}
+
+.profile button{
+    height: 38px;
+    width: 38px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ABF9FF, #FF8F8D);
+}
+
+.profile img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 #sidebar{

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="loadinggif" id="loadinggif" style="height: 20px; width: 20px; display: none;">
+    <img src="loading.gif" alt="loading">
+  </div>
+
+  <div class="nav">
+
+    <div class="navItems">
+
+      <div class="navBranding">
+        <img class="navBranding-img" src="logo.png" alt="logo">
+        <h2>VisaPro</h2>
+      </div>
+
+      <div class="navOptions">
+        <button class="navOptions-btn" onclick=functionDashboard()>
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 26 26">
+            <path d="M 20 2.03125 C 19.449219 2.03125 19 2.480469 19 3.03125 L 19 7.8125 L 13.71875 2.53125 C 13.328125 2.140625 12.671875 2.140625 12.28125 2.53125 L 0.5625 14.28125 C 0.171875 14.671875 0.171875 15.296875 0.5625 15.6875 C 0.953125 16.078125 1.578125 16.078125 1.96875 15.6875 L 13 4.65625 L 24.0625 15.71875 C 24.257813 15.914063 24.523438 16.03125 24.78125 16.03125 C 25.039063 16.03125 25.273438 15.914063 25.46875 15.71875 C 25.859375 15.328125 25.859375 14.703125 25.46875 14.3125 L 22 10.84375 L 22 3.03125 C 22 2.480469 21.550781 2.03125 21 2.03125 Z M 13 6.5 L 2 17.5 L 2 23 C 2 24.65625 3.34375 26 5 26 L 21 26 C 22.65625 26 24 24.65625 24 23 L 24 17.5 Z M 11 16 L 15 16 C 15.550781 16 16 16.449219 16 17 L 16 23 C 16 23.550781 15.550781 24 15 24 L 11 24 C 10.449219 24 10 23.550781 10 23 L 10 17 C 10 16.449219 10.449219 16 11 16 Z"></path>
+          </svg>
+          <p>Dashboard</p>
+        </button>
+        <button class="navOptions-btn" onclick=functionAIConsultant()>
+          <img width="16" height="16" src="https://img.icons8.com/ios/50/bot.png" alt="bot"/>
+          <p>AI Consultant</p>
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="navUserItems">
+
+      <button class="navUserItems-btn" onclick=functionNotification()>
+        <img width="16" height="16" src="https://img.icons8.com/external-linear-outline-icons-papa-vector/78/external-Notifications-interface-linear-outline-icons-papa-vector.png" alt="external-Notifications-interface-linear-outline-icons-papa-vector"/>
+        <p>Notifications</p>
+      </button>
+
+      <button class="navUserItems-btn" onclick=functionSettings()>
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 50 50">
+          <path d="M 22.205078 2 A 1.0001 1.0001 0 0 0 21.21875 2.8378906 L 20.246094 8.7929688 C 19.076509 9.1331971 17.961243 9.5922728 16.910156 10.164062 L 11.996094 6.6542969 A 1.0001 1.0001 0 0 0 10.708984 6.7597656 L 6.8183594 10.646484 A 1.0001 1.0001 0 0 0 6.7070312 11.927734 L 10.164062 16.873047 C 9.583454 17.930271 9.1142098 19.051824 8.765625 20.232422 L 2.8359375 21.21875 A 1.0001 1.0001 0 0 0 2.0019531 22.205078 L 2.0019531 27.705078 A 1.0001 1.0001 0 0 0 2.8261719 28.691406 L 8.7597656 29.742188 C 9.1064607 30.920739 9.5727226 32.043065 10.154297 33.101562 L 6.6542969 37.998047 A 1.0001 1.0001 0 0 0 6.7597656 39.285156 L 10.648438 43.175781 A 1.0001 1.0001 0 0 0 11.927734 43.289062 L 16.882812 39.820312 C 17.936999 40.39548 19.054994 40.857928 20.228516 41.201172 L 21.21875 47.164062 A 1.0001 1.0001 0 0 0 22.205078 48 L 27.705078 48 A 1.0001 1.0001 0 0 0 28.691406 47.173828 L 29.751953 41.1875 C 30.920633 40.838997 32.033372 40.369697 33.082031 39.791016 L 38.070312 43.291016 A 1.0001 1.0001 0 0 0 39.351562 43.179688 L 43.240234 39.287109 A 1.0001 1.0001 0 0 0 43.34375 37.996094 L 39.787109 33.058594 C 40.355783 32.014958 40.813915 30.908875 41.154297 29.748047 L 47.171875 28.693359 A 1.0001 1.0001 0 0 0 47.998047 27.707031 L 47.998047 22.207031 A 1.0001 1.0001 0 0 0 47.160156 21.220703 L 41.152344 20.238281 C 40.80968 19.078827 40.350281 17.974723 39.78125 16.931641 L 43.289062 11.933594 A 1.0001 1.0001 0 0 0 43.177734 10.652344 L 39.287109 6.7636719 A 1.0001 1.0001 0 0 0 37.996094 6.6601562 L 33.072266 10.201172 C 32.023186 9.6248101 30.909713 9.1579916 29.738281 8.8125 L 28.691406 2.828125 A 1.0001 1.0001 0 0 0 27.705078 2 L 22.205078 2 z M 23.056641 4 L 26.865234 4 L 27.861328 9.6855469 A 1.0001 1.0001 0 0 0 28.603516 10.484375 C 30.066026 10.848832 31.439607 11.426549 32.693359 12.185547 A 1.0001 1.0001 0 0 0 33.794922 12.142578 L 38.474609 8.7792969 L 41.167969 11.472656 L 37.835938 16.220703 A 1.0001 1.0001 0 0 0 37.796875 17.310547 C 38.548366 18.561471 39.118333 19.926379 39.482422 21.380859 A 1.0001 1.0001 0 0 0 40.291016 22.125 L 45.998047 23.058594 L 45.998047 26.867188 L 40.279297 27.871094 A 1.0001 1.0001 0 0 0 39.482422 28.617188 C 39.122545 30.069817 38.552234 31.434687 37.800781 32.685547 A 1.0001 1.0001 0 0 0 37.845703 33.785156 L 41.224609 38.474609 L 38.53125 41.169922 L 33.791016 37.84375 A 1.0001 1.0001 0 0 0 32.697266 37.808594 C 31.44975 38.567585 30.074755 39.148028 28.617188 39.517578 A 1.0001 1.0001 0 0 0 27.876953 40.3125 L 26.867188 46 L 23.052734 46 L 22.111328 40.337891 A 1.0001 1.0001 0 0 0 21.365234 39.53125 C 19.90185 39.170557 18.522094 38.59371 17.259766 37.835938 A 1.0001 1.0001 0 0 0 16.171875 37.875 L 11.46875 41.169922 L 8.7734375 38.470703 L 12.097656 33.824219 A 1.0001 1.0001 0 0 0 12.138672 32.724609 C 11.372652 31.458855 10.793319 30.079213 10.427734 28.609375 A 1.0001 1.0001 0 0 0 9.6328125 27.867188 L 4.0019531 26.867188 L 4.0019531 23.052734 L 9.6289062 22.117188 A 1.0001 1.0001 0 0 0 10.435547 21.373047 C 10.804273 19.898143 11.383325 18.518729 12.146484 17.255859 A 1.0001 1.0001 0 0 0 12.111328 16.164062 L 8.8261719 11.46875 L 11.523438 8.7734375 L 16.185547 12.105469 A 1.0001 1.0001 0 0 0 17.28125 12.148438 C 18.536908 11.394293 19.919867 10.822081 21.384766 10.462891 A 1.0001 1.0001 0 0 0 22.132812 9.6523438 L 23.056641 4 z M 25 17 C 20.593567 17 17 20.593567 17 25 C 17 29.406433 20.593567 33 25 33 C 29.406433 33 33 29.406433 33 25 C 33 20.593567 29.406433 17 25 17 z M 25 19 C 28.325553 19 31 21.674447 31 25 C 31 28.325553 28.325553 31 25 31 C 21.674447 31 19 28.325553 19 25 C 19 21.674447 21.674447 19 25 19 z"></path>
+          </svg>
+        <p>Settings</p>
+      </button>
+
+      <button class="navUserItems-btn" onclick=functionSupport()>
+        <img width="16" height="16" src="https://img.icons8.com/ios/50/ask-question--v1.png" alt="ask-question--v1"/>
+        <p>Support</p>
+      </button>
+
+      <button class="navUserItems-profile" onclick=functionProfile()>
+       <img width="48" height="48" src="https://img.icons8.com/fluency/48/name--v1.png" alt="name--v1"/>
+        <p>Abhinav Naidu C</p>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="content">
+    <h1>VISAGPT</h1>
+    <div class="contentChat">
+
+      <div class="contentQuery" style="display: none;">
+        <p class="contentQuery-p">Some Random Question</p>
+        <img width="30" height="30" src="https://img.icons8.com/?size=100&id=492ILERveW8G&format=png&color=000000" alt="name--v1"/>
+      </div>
+      <div class="contentResponse" style="display: none;">
+        <img width="30" height="30" src="https://img.icons8.com/ios/50/bot.png" alt="bot"/>
+        <p class="contentResponse-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui perspiciatis quia distinctio eos odio exercitationem ducimus optio nihil, totam, dignissimos quae, ad cum rem voluptate fugiat voluptatem consectetur ipsum mollitia.</p>
+      </div>
+      <div class="contentWelcome">
+        <p class="contentWelcome-p">Welcome to VisaGPT</p>
+        <div class="contentWelcome-btns">
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to USA</button>
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to UK</button>
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Canada</button>
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>What is VISA</button>
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to Australia</button>
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Germany</button>
+          <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to France</button>
+        </div>
+      </div>
+    </div>
+    <div class="chatInput">
+      <input class="chatInput-input" type="text" placeholder="Type a message"/>
+      <button class="chatInput-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="25" height="25" style="color: #f68771;">
+          <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="navRight">
+    <div class="navRightHistory">
+      <h2>History</h2>
+      <div class="navRightHistory-items">
+        <div class="navRightNewChat">
+          <button class="navRightNewChat-btn">
+            <img width="16" height="16" src="https://img.icons8.com/ios/50/add--v1.png" alt="add--v1"/>
+            <p>New Conversation</p>
+          </button>
+        </div>
+        <div class="navRightHistory-chats">
+          <button class="navRightHistory-chats-btn">
+            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
+            <p>Chat 1</p>
+          </button>
+          <button class="navRightHistory-chats-btn">
+            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
+            <p>Chat 2</p>
+          </button>
+          <button class="navRightHistory-chats-btn">
+            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
+            <p>Chat 3</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="navRightLogout-btn" onclick=functionLogout()>
+      <img width="16" height="16" src="https://img.icons8.com/ios/50/logout-rounded-up.png" alt="logout-rounded-up"/>
+      <p>Logout</p>
+    </button>
+  </div>
+</body>
+</html>

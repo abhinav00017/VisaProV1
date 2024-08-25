@@ -28,7 +28,7 @@ def home(status=None):
     data = records.retrieve_record(session["email"])
     if data == None:
         return redirect("/visagpt/add_new_user_data")
-    return render_template('/visagpt/index.html', name=session["name"])
+    return render_template('/visagpt/index.html', name=session["name"], image=session["picture"])
 
 @visagpt.route("/visagpt/add_new_user_data")
 @login_is_required
