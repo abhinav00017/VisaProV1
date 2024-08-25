@@ -35,7 +35,7 @@ def home(status=None):
 def add_new_user_data(status=None):
     if status == "loggedout":
         return redirect("/login_landing")
-    return render_template('/restration/index.html')
+    return render_template('/registration/index.html')
 
 @visagpt.route("/visagpt/threads")
 @login_is_required

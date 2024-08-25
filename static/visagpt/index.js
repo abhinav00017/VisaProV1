@@ -323,7 +323,7 @@ window.onload = () => {
     });
 
     async function createThread() {
-        const response = await fetch(`/add_thread`);
+        const response = await fetch(`/visagpt/add_thread`);
         const data = await response.json();
         lastThread = data;
         last_threadId = lastThread.id;
