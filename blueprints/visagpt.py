@@ -30,6 +30,16 @@ def home(status=None):
         return redirect("/visagpt/add_new_user_data")
     return render_template('/visagpt/index.html', name=session["name"], image=session["picture"])
 
+@visagpt.route('/visagpt/sample')
+@login_is_required
+def sample(status=None):
+    if status == "loggedout":
+        return redirect("/login_landing")
+    data = records.retrieve_record(session["email"])
+    if data == None:
+        return redirect("/visagpt/add_new_user_data")
+    return render_template('/home/sample.html', name=session["name"], image=session["picture"])
+
 @visagpt.route("/visagpt/add_new_user_data")
 @login_is_required
 def add_new_user_data(status=None):

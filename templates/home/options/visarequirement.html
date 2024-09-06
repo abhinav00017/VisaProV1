@@ -1,0 +1,111 @@
+{% macro visarequirementmacro() %}
+
+<div class="contentVisaRequirement">
+    <div class="contentHeader">
+        <div class="contentHeaderNav">
+            <button class="contentHeaderNav-btn" onclick=functionDashboard()>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" height="18px" width="18px">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                  </svg>              
+            </button>
+            Visa Requirement
+        </div>
+        
+        <div class="contentHeaderCitizen">
+            <span class="fi fi-in"></span>
+            <span>Indian Citizen</span>
+        </div>
+    </div>
+
+    <div class="contentBody">
+        <div class="contentVRBodyCountrySelecthead">
+            <span class="span1">Select Country</span>
+            <span class="span2">we're currently supporting only visa only for travel purpose?</span>
+        </div>
+        <div class="contentVRBodyCountrySelection">
+            <select class="contentVRBodyCountrySelection-select" name="" id="">
+                <option value="0">Eg. USA</option>
+                <option value="India"><span class="fi fi-in"></span>India</option>
+                <option value="USA"><span class="fi fi-us"></span>USA</option>
+                <option value="UK"><span class="fi fi-gb"></span>UK</option>
+                <option value="Canada"><span class="fi fi-ca"></span>Canada</option>
+                <option value="Australia"><span class="fi fi-au"></span>Australia</option>
+            </select>
+        </div>
+        <div class="contentVRBodyPopularCountry">
+            <span class="span1">Popular countries visited by your people<span>
+            <div class="contentVRBodyPopularCountryDetails">
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-us flag"></span>
+                    <span>USA</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <img src="https://flagsapi.com/BE/flat/64.png">
+                    <span>UK</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-ca flag"></span>
+                    <span>Canada</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-au flag"></span>
+                    <span>Australia</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-ae flag"></span>
+                    <span>UAE</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-sg flag"></span>
+                    <span>Singapore</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-th flag"></span>
+                    <span>Thailand</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-my flag"></span>
+                    <span>Malaysia</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-nz flag"></span>
+                    <span>New Zealand</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-kr flag"></span>
+                    <span>South Korea</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-jp flag"></span>
+                    <span>Japan</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-cn flag"></span>
+                    <span>China</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-hk flag"></span>
+                    <span>Hong Kong</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-fr flag"></span>
+                    <span>France</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-de flag"></span>
+                    <span>Germany</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-it flag"></span>
+                    <span>Italy</span>
+                </div>
+                <div class="contentVRBodyPopularCountries">
+                    <span class="fi fi-es flag"></span>
+                    <span>Spain</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endmacro %}

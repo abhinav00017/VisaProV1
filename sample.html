@@ -67,70 +67,75 @@
 
 
   <div class="content">
-    <h1>VISAGPT</h1>
-    <div class="contentChat">
-
-      <div class="contentQuery" style="display: none;">
-        <p class="contentQuery-p">Some Random Question</p>
-        <img width="30" height="30" src="https://img.icons8.com/?size=100&id=492ILERveW8G&format=png&color=000000" alt="name--v1"/>
-      </div>
-      <div class="contentResponse" style="display: none;">
-        <img width="30" height="30" src="https://img.icons8.com/ios/50/bot.png" alt="bot"/>
-        <p class="contentResponse-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui perspiciatis quia distinctio eos odio exercitationem ducimus optio nihil, totam, dignissimos quae, ad cum rem voluptate fugiat voluptatem consectetur ipsum mollitia.</p>
-      </div>
-      <div class="contentWelcome">
-        <p class="contentWelcome-p">Welcome to VisaGPT</p>
-        <div class="contentWelcome-btns">
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to USA</button>
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to UK</button>
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Canada</button>
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>What is VISA</button>
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to Australia</button>
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Germany</button>
-          <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to France</button>
+    <div class="contentVisaProGPT">
+      <div class="contentChat">
+        <div class="contentChatDisplay">
+          <div class="contentQuery" >
+            <p class="contentQuery-p">Some Random Question</p>
+            <img width="30" height="30" src="https://img.icons8.com/?size=100&id=492ILERveW8G&format=png&color=000000" alt="name--v1"/>
+          </div>
+          <div class="contentResponse" >
+            <img width="30" height="30" src="https://img.icons8.com/ios/50/bot.png" alt="bot"/>
+            <p class="contentResponse-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui perspiciatis quia distinctio eos odio exercitationem ducimus optio nihil, totam, dignissimos quae, ad cum rem voluptate fugiat voluptatem consectetur ipsum mollitia.</p>
+          </div>
+          <div class="contentWelcome" style="display: none;">
+            <p class="contentWelcome-p">Welcome to VisaGPT</p>
+            <div class="contentWelcome-btns">
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to USA</button>
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to UK</button>
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Canada</button>
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>What is VISA</button>
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to Australia</button>
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Germany</button>
+              <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to France</button>
+            </div>
+          </div>
+        </div>
+        <div class="chatInput">
+          <input class="chatInput-input" type="text" placeholder="Type a message"/>
+          <button class="chatInput-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="25" height="25" style="color: #f68771;">
+              <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+            </svg>
+          </button>
         </div>
       </div>
-    </div>
-    <div class="chatInput">
-      <input class="chatInput-input" type="text" placeholder="Type a message"/>
-      <button class="chatInput-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="25" height="25" style="color: #f68771;">
-          <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
-        </svg>
-      </button>
+
+
+      <div class="navRight">
+        <div class="navRightHistory">
+          <h2>History</h2>
+          <div class="navRightHistory-items">
+            <div class="navRightNewChat">
+              <button class="navRightNewChat-btn">
+                <img width="16" height="16" src="https://img.icons8.com/ios/50/add--v1.png" alt="add--v1"/>
+                <p>New Conversation</p>
+              </button>
+            </div>
+            <div class="navRightHistory-chats">
+              <button class="navRightHistory-chats-btn">
+                <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
+                <p>Chat 1</p>
+              </button>
+              <button class="navRightHistory-chats-btn">
+                <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
+                <p>Chat 2</p>
+              </button>
+              <button class="navRightHistory-chats-btn">
+                <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
+                <p>Chat 3</p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="navRightLogout-btn" onclick=functionLogout()>
+          <img width="16" height="16" src="https://img.icons8.com/ios/50/logout-rounded-up.png" alt="logout-rounded-up"/>
+          <p>Logout</p>
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="navRight">
-    <div class="navRightHistory">
-      <h2>History</h2>
-      <div class="navRightHistory-items">
-        <div class="navRightNewChat">
-          <button class="navRightNewChat-btn">
-            <img width="16" height="16" src="https://img.icons8.com/ios/50/add--v1.png" alt="add--v1"/>
-            <p>New Conversation</p>
-          </button>
-        </div>
-        <div class="navRightHistory-chats">
-          <button class="navRightHistory-chats-btn">
-            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
-            <p>Chat 1</p>
-          </button>
-          <button class="navRightHistory-chats-btn">
-            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
-            <p>Chat 2</p>
-          </button>
-          <button class="navRightHistory-chats-btn">
-            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/chat.png" alt="chat"/>
-            <p>Chat 3</p>
-          </button>
-        </div>
-      </div>
-    </div>
-    <button class="navRightLogout-btn" onclick=functionLogout()>
-      <img width="16" height="16" src="https://img.icons8.com/ios/50/logout-rounded-up.png" alt="logout-rounded-up"/>
-      <p>Logout</p>
-    </button>
-  </div>
+  
 </body>
 </html>

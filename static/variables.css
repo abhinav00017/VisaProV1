@@ -1,0 +1,90 @@
+:root {
+    --content-primary-black-1: #222222;
+    --content-primary-white-1: #ffffff;
+    --content-primary-black-2: #4f4f4f;
+    --content-primary-black-3: #5b5b5b;
+    --content-primary-black-4: #828282;
+    --content-primary-black-5: #aaaaaa;
+
+    --background-primary-white-1: #ffffff;
+    --background-primary-gray-1: #f8f8f8;
+    --background-primary-gray-2: #404040;
+    --background-primary-orange-1: #f16828;
+    --background-primary-orange-2: #ffe6d4;
+    --background-primary-orange-2-opacity: #fff8f4;
+
+    --border-external-1: #c0c0c0;
+    --border-pill-1: #7e7e7e;
+    --border-navbar-1: #505050;
+    --border-table-1: #dcdcdc;
+    --border-tablediv-2: #8b8b8b;
+
+    --drop-external-1: #acacac;
+    --drop-pill-1: #cccccc;
+    --drop-table-1: #d9d9d9;
+
+    --heading-1-font-size: 24px;
+    --heading-1-font-weight: 600; /* Semi Bold */
+    --heading-1-line-height: 150%;
+    --heading-1-margin: 1%;
+
+    --heading-2-font-size: 24px;
+    --heading-2-font-weight: 600; /* Semi Bold */
+    --heading-2-line-height: 150%;
+    --heading-2-margin: 1%;
+
+    --heading-3-font-size: 20px;
+    --heading-3-font-weight: 600; /* Semi Bold */
+    --heading-3-line-height: 150%;
+    --heading-3-margin: 1%;
+
+    --heading-4-font-size: 18px;
+    --heading-4-font-weight: 600; /* Semi Bold */
+    --heading-4-line-height: 150%;
+    --heading-4-margin: 1%;
+
+    --heading-5-font-size: 16px;
+    --heading-5-font-weight: 600; /* Semi Bold */
+    --heading-5-line-height: 150%;
+    --heading-5-margin: 1%;
+
+    --subheading-1-font-size: 24px;
+    --subheading-1-font-weight: 500; /* Medium */
+    --subheading-1-line-height: 150%;
+    --subheading-1-margin: 1%;
+
+    --subheading-2-font-size: 20px;
+    --subheading-2-font-weight: 500; /* Medium */
+    --subheading-2-line-height: 150%;
+    --subheading-2-margin: 1%;
+
+    --subheading-3-font-size: 18px;
+    --subheading-3-font-weight: 500; /* Medium */
+    --subheading-3-line-height: 150%;
+    --subheading-3-margin: 1%;
+
+    --subheading-4-font-size: 16px;
+    --subheading-4-font-weight: 500; /* Medium */
+    --subheading-4-line-height: 150%;
+    --subheading-4-margin: 1%;
+
+    --paragraph-1-font-size: 18px;
+    --paragraph-1-font-weight: 400; /* Regular */
+    --paragraph-1-line-height: 150%;
+    --paragraph-1-margin: 0.5%;
+
+    --paragraph-2-font-size: 16px;
+    --paragraph-2-font-weight: 400; /* Regular */
+    --paragraph-2-line-height: 150%;
+    --paragraph-2-margin: 0.5%;
+
+    --paragraph-3-font-size: 14px;
+    --paragraph-3-font-weight: 400; /* Regular */
+    --paragraph-3-line-height: 150%;
+    --paragraph-3-margin: 0.5%;
+
+    --paragraph-4-font-size: 12px;
+    --paragraph-4-font-weight: 400; /* Regular */
+    --paragraph-4-line-height: 150%;
+    --paragraph-4-margin: 0.5%;
+}
