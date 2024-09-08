@@ -1,0 +1,153 @@
+
+.contentVisaProGPT {
+    
+}
+
+.contentAIBody {
+    display: flex;
+    flex-direction: row;
+}
+
+.contentAIChat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 660px;
+}
+
+.contentAIChatDisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.contentAIWelcome {
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    flex-direction: column;
+    border: 2px solid lightgray;
+    gap: 40px;
+    margin-top: 150px;
+    border: none;
+    padding: 20px;
+}
+
+.contentAIWelcome-span {
+    text-align: center;
+}
+
+.contentAIWelcome-span span {
+    font-size:x-large;
+    font-weight: bold;
+    color: orange;
+}
+
+.contentAIWelcome-btns {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contentAIWelcome-btn {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #474747;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    outline: 1px solid #E7E7E7;
+    padding: 8px 12px;
+    margin: 8px 8px;
+    cursor: pointer;
+}
+
+.contentAIWelcome-btn:hover {
+    background-color: #efc9c1;
+    color: black;
+}
+
+.contentAIQuery {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    margin: 10px 10px 10px auto;
+    align-items: center;
+    max-width: 70%;
+    gap: 10px;
+}
+
+.contentAIQuery-p{
+    height: fit-content;
+    padding: 5px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    object-fit: cover;
+
+}
+
+.contentAIResponse {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    margin-left: 10px;
+    align-items: center;
+    max-width: 70%;
+    gap: 10px;
+}
+
+.contentAIResponse-p{
+    height: fit-content;
+    padding: 5px;
+    border: 2px solid #efc9c1;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.chatInput {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.chatInput-input {
+    background-color: white;
+    color: black;
+    font-size: medium;
+    font-weight: bold;
+    border: 2px solid rgb(231, 229, 229);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.chatInput-btn {
+    background-color: white;
+    color: black;
+    font-size: medium;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.chatInput-btn svg {
+    color: black;
+}
+
+.chatInput-btn .disabled {
+    color: lightgray;
+}

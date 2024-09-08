@@ -1,36 +1,57 @@
 {% macro visaprogptmacro() %}
 
 <div class="contentVisaProGPT">
-    <div class="contentChat">
-      <div class="contentChatDisplay">
-        <div class="contentQuery" >
-          <p class="contentQuery-p">Some Random Question</p>
+  <div class="contentHeader">
+    Dashboards
+    <div class="contentHeaderCitizen">
+        <span class="fi fi-in"></span>
+        <span>Indian Citizen</span>
+    </div>
+  </div>
+  <div class="contentAIBody">
+    <div class="contentAIChat">
+      <div class="contentAIChatDisplay" id="contentAIChatDisplay">
+
+        <div class="contentAIQuery" id="contentAIQuery"  style="display: none;">
+          <p class="contentAIQuery-p" id="contentAIQuery-p"></p>
           <img width="30" height="30" src="https://img.icons8.com/?size=100&id=492ILERveW8G&format=png&color=000000" alt="name--v1"/>
         </div>
-        <div class="contentResponse" >
+        <div class="contentAIResponse" id="contentAIResponse" style="display: none;" >
           <img width="30" height="30" src="https://img.icons8.com/ios/50/bot.png" alt="bot"/>
-          <p class="contentResponse-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui perspiciatis quia distinctio eos odio exercitationem ducimus optio nihil, totam, dignissimos quae, ad cum rem voluptate fugiat voluptatem consectetur ipsum mollitia.</p>
+          <p class="contentAIResponse-p" id="contentAIResponse-p"></p>
         </div>
-        <div class="contentWelcome" style="display: none;">
-          <p class="contentWelcome-p">Welcome to VisaGPT</p>
-          <div class="contentWelcome-btns">
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to USA</button>
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to UK</button>
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Canada</button>
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>What is VISA</button>
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to Australia</button>
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>How can I get VISA to Germany</button>
-            <button class="contentWelcome-btn" onclick=functionChatStarter()>What are current VISA rules to France</button>
+
+        <div class="loadingGif" id="loadingGif" style="display: none;">
+          <img width="30" height="30" src="/static/loading.gif" alt="loading-bar-ring"/>
+          <span>loading</span>
+        </div>
+
+        <div class="contentAIWelcome" id="contentAIWelcome" style="">
+          <div class="contentAIWelcome-span">
+            <span>Welcome to VisaGPT</span>
+          </div>
+          <div class="contentAIWelcome-btns">
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">How can I get VISA to USA</button>
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">What are current VISA rules to UK</button>
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">How can I get VISA to Canada</button>
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">What is VISAAAAAA</button>
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">What are current VISA rules to Australia</button>
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">How can I get VISA to Germany</button>
+            <button class="contentAIWelcome-btn" onclick="functionChatStarter(this)">What are current VISA rules to France</button>
           </div>
         </div>
+
       </div>
+
       <div class="chatInput">
-        <input class="chatInput-input" type="text" placeholder="Type a message"/>
-        <button class="chatInput-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="25" height="25" style="color: #f68771;">
+
+        <input class="chatInput-input" id="chatInput-input" type="text" placeholder="Type a message"/>
+        <button class="chatInput-btn" id="chatInput-btn" onclick="functionSendQuery(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" id="chatInput-svg" width="25" height="25">
             <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
           </svg>
         </button>
+
       </div>
     </div>
 
@@ -66,6 +87,7 @@
         <p>Logout</p>
       </button>
     </div>
+  </div>
   </div>
 
 {% endmacro %}

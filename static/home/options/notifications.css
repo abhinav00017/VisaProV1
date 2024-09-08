@@ -1,0 +1,25 @@
+.contentNotifications {
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications {
+    gap: 10px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    padding: 0px 20px;
+    width: 1000px;
+}
+
+.notificationTitle {
+    padding: 0px;
+    margin: 0px;
+    font-size: large;
+    font-weight: bold;
+    color: orange;
+}
+
+.notificationContent{
+    padding: 0px;
+    margin: 0px;
+}
